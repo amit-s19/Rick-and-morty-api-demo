@@ -1,0 +1,173 @@
+@mixin on-mobile {
+    @media (max-width: 769px) {
+        @content;
+    }
+}
+
+@mixin on-desktop {
+    @media (min-width: 769px) {
+        @content;
+    }
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        padding: 1.5rem;
+        background: #2b2b2b;
+        border-radius: 0.5rem;
+        max-width: 45%;
+        box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+
+        @include on-mobile() {
+            max-width: 65%;
+            max-height: 70%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .mainData {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            @include on-mobile() {
+                flex-direction: column;
+            }
+
+            &>img {
+                border-radius: 0.5rem;
+                max-width: 15rem;
+                max-height: 15rem;
+
+                @include on-mobile() {
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+            }
+
+            .mainText {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                color: #fff;
+                padding: 0rem 2rem;
+
+                & p:nth-child(1) {
+                    font-size: 2rem;
+                    font-weight: bolder;
+                    margin-top: 0rem;
+
+                    @include on-mobile() {
+                        font-size: 1.5rem;
+                        margin-top: 1rem;
+                    }
+                }
+
+                & p:nth-child(2) {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    margin-top: -2rem;
+                    display: flex;
+                    align-items: center;
+                    color: rgba(255, 255, 255, 0.6);
+
+                    @include on-mobile() {
+                        font-size: 1rem;
+                        margin-top: -1.5rem;
+                    }
+
+                    & img {
+                        max-width: 2rem;
+                    }
+                }
+
+                & p:nth-child(3) {
+                    font-size: 1.3rem;
+                    font-weight: bolder;
+                    opacity: 0.4;
+                    margin-top: 0.5rem;
+                }
+
+                & p:nth-child(4) {
+                    font-size: 1.3rem;
+                    opacity: 0.9;
+                    margin-top: -1rem;
+                }
+
+                & p:nth-child(5) {
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    margin-top: 0.5rem;
+                    opacity: 0.4;
+                }
+
+                & p:nth-child(6) {
+                    font-size: 1.3rem;
+                    opacity: 0.9;
+                    margin-top: -1rem;
+                }
+            }
+        }
+
+        .separator {
+            margin-top: 2rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            height: 3px;
+            border-radius: 50%;
+        }
+
+        .featuredText {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 1);
+            font-weight: bolder;
+            margin: 0.5rem 0rem;
+        }
+
+        .episodeData {
+            max-height: 10rem;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            color: rgba(255, 255, 255, 0.6);
+            animation: 60s credits linear infinite;
+
+            &::-webkit-scrollbar {
+                -webkit-appearance: none;
+                width: 7px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                background-color: rgba(0, 0, 0, .7);
+            }
+
+            &::-webkit-scrollbar-track {
+                border-radius: 4px;
+                background-color: rgba(255, 255, 255, .2);
+            }
+        }
+    }
+}
+
+@keyframes credits {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        top: -500000%;
+    }
+}
